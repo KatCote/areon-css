@@ -17,10 +17,15 @@ int main()
 	Connect(fd, (struct sockaddr *) &adr, sizeof adr);
 	 
 	char msg[256];
-	scanf("%256[^\n]", msg);
-	write(fd, msg, strlen(msg));
 	char buf[256];
 	ssize_t nread;
+
+	//do
+	//{
+
+	scanf("%256[^\n]", msg);
+	write(fd, msg, strlen(msg));
+	//ssize_t nread;
 	nread = read(fd, buf, 256);
 
 	if (nread == -1)
@@ -32,9 +37,13 @@ int main()
 	{
 		printf("EOF occured\n");
 	}
+	
+	//}
+	//while(strcmp(msg, "exit") != 0);
+
 
 	write(STDOUT_FILENO, buf, nread);
-	sleep(1);
+	//sleep(1);
 	close(fd);
 
 	return 0;
