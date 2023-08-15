@@ -15,9 +15,9 @@ int main()
 	adr.sin_port = htons(728);
 	Inet_pton(AF_INET, "127.0.0.1", &adr.sin_addr);
 	Connect(fd, (struct sockaddr *) &adr, sizeof adr);
-	
+	 
 	char msg[256];
-	strcpy(msg, "Hello World");
+	scanf("%256[^\n]", msg);
 	write(fd, msg, strlen(msg));
 	char buf[256];
 	ssize_t nread;
