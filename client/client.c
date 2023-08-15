@@ -3,6 +3,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
 
@@ -14,8 +15,10 @@ int main()
 	adr.sin_port = htons(728);
 	Inet_pton(AF_INET, "127.0.0.1", &adr.sin_addr);
 	Connect(fd, (struct sockaddr *) &adr, sizeof adr);
-
-	write(fd, "Hello\n", 6);
+	
+	char msg[256];
+	strcpy(msg, "Hello World");
+	write(fd, msg, strlen(msg));
 	char buf[256];
 	ssize_t nread;
 	nread = read(fd, buf, 256);
@@ -31,7 +34,7 @@ int main()
 	}
 
 	write(STDOUT_FILENO, buf, nread);
-	sleep(10);
+	sleep(1);
 	close(fd);
 
 	return 0;

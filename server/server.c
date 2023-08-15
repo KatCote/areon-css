@@ -18,6 +18,8 @@ int main()
 	socklen_t adrlen = sizeof adr;
 	int fd = Accept(server, (struct sockaddr *) &adr, &adrlen); // adr now is absolut another variable (rewrite for new actions)
 
+	write(STDOUT_FILENO, "CONNECTED\n", 10);
+	
 	ssize_t nread;
 	char buf[256];
 	nread = read(fd, buf, 256);
